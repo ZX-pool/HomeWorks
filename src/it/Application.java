@@ -1,6 +1,8 @@
 package it;
 
 import java.io.*;
+import java.lang.reflect.Field;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,11 @@ public class Application {
 
         backUpEmployers(file, (Serializable) employers);
         System.out.println(restoreEmployers(file));
+
+        System.out.println(" Fields in Class Employee have annotation:");
+        getFieldsAnnotation(Emloyee.class);
+        LocalTime lt = LocalTime.now();
+        System.out.println("Local time is = " + lt);
     }
 
     public static void backUpEmployers(File file, Serializable data) throws IOException {
@@ -36,6 +43,13 @@ public class Application {
         ObjectInputStream ois = new ObjectInputStream(is);
         return (Serializable) ois.readObject();
 
+    }
+
+    public static void getFieldsAnnotation (Class<?> someClass) {
+        Field[] fields = someClass.getDeclaredFields();
+        for (Field field: fields) {
+            System.out.println("Field - " + field.getName() + " have annotation: " + field.getAnnotation(EmployeeAnnotation.class));
+        }
     }
 
 

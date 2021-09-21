@@ -3,8 +3,11 @@ package it;
 import java.io.Serializable;
 
 public class Emloyee implements Serializable {
+    @EmployeeAnnotation(parameter = "This field is name employee")
     private String name;
+    @EmployeeAnnotation(parameter = "This field is id number of employee")
     private int id;
+    @EmployeeAnnotation //(parameter = "This field is value of salary employee")
     private int salary;
 
     public Emloyee(String name, int id, int salary) {
